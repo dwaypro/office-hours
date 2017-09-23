@@ -7,9 +7,9 @@
 <% end %>
 
 <%= form_for [@project, @update] do |f| %>
-<%= f.text_field :title, placeholder: "Title" %>
-<%= f.text_field :description, placeholder: "Description" %>
-<%= f.submit "Create Update for Project" %>
+  <%= f.text_field :title, placeholder: "Title" %>
+  <%= f.text_field :description, placeholder: "Description" %>
+  <%= f.submit "Create Update for Project" %>
 <% end %>
 
 <%= link_to "Back", project_updates_path %>
