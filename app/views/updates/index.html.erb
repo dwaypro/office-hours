@@ -2,6 +2,6 @@
 <%= link_to "New Update", new_project_update_path %>
 <ul>
   <% @updates.each do |update| %>
-    <li><%= link_to update.title, update %></li>
+    <li><%= link_to update.title, [@project, update] %></li>
   <% end %>
 </ul>

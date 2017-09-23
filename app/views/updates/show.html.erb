@@ -1,15 +1,19 @@
 <h1><%= @update.title %></h1>
-<% if @update.approval == false %>
-  <%= form_tag("/updates/#{@update.id}", method: :put) do%>
-    <%= submit_tag("Approve") %>
-  <% end %>
-  <%= form_tag("/updates/#{@update.id}", method: :delete) do %>
-    <%= submit_tag("Deny") %>
+<% if current_user.admin? %>
+  <% if @update.approval == false %>
+    <%= form_tag([@update.project, @update], method: :put) do %>
+      <%= submit_tag("Approve") %>
+    <% end %>
+    <%= form_tag([@update.project, @update], method: :delete) do %>
+      <%= submit_tag("Deny") %>
+    <% end %>
   <% end %>
 <% end %>
-<% if @update.approval %>
-  <%= link_to "Edit", edit_update_path(@update) %>
-  <%= link_to "Delete", update_path(@update) %>
+<% if !current_user.admin? && current_user.id == @update.user_id %>
+  <% if @update.approval %>
+    <%= link_to "Edit", edit_project_update_path(@update.project, @update) %>
+    <%= link_to "Delete", [@update.project, @update], method: :delete , data: { confirm: 'Are you sure?' } %>
+  <% end %>
 <% end %>
 <ul>
   <li>id: <%= @update.id %></li>
