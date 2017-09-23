@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
   def index
+
+    @subscription = Subscription.new
+
     if current_user.admin?
       @projects = current_user.projects
     else
@@ -9,7 +12,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @updates = @project.updates
+
+   # @updates = @project.updates
   end
 
   def new
@@ -33,6 +37,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
+
     if @project.update(project_params)
       redirect_to @project
     else

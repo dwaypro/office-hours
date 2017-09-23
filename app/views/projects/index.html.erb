@@ -2,16 +2,57 @@
 <html>
 <head>
   <title>University Projects</title>
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
+  
   <% if current_user.admin? %>
     <h1>Your Active Projects</h1>
   <% else %>
+    <h3>Choose A Session to Participate In:</h3>
+  <% end %>
+  
     <p class="flow-text center-align">Choose A Project</p>
   <% end %>
 
   <% @projects.each do |project| %>
+  <% if current_user.admin? == false && current_user.projects.exclude?(project) %>
+  <div class ="row ">
+    <div class="col s5">
+    <p class="flow-text center-align"><%= project.title%></p>
+    <div class="card horizontal teal accent-1 card-panel hoverable">
+      <div class="card-stacked ">
+        <div class="card-content">
+    <tr>
+
+      <td> <%= project.description%> </td>
+     
+      
+      <td><%= render partial: 'subscribe', locals: {project: project } %></td>
+
+    <% if current_user.admin = false || current_user.projects.exclude?(project) %>
+      <td><%= render 'subscribe' %></td>
+    <% elsif current_user.admin = false || current_user.projects.include?(project) %>
+      <td><%= render 'unsubscribe' %></td>
+    <% end %>
+    </tr>
+    </div>
+
+    </div>
+    </div>
+  </div>
+  <% end %>
+
+    
+    <h3>Current Sessions:</h3>
+    
+    <p class="flow-text center-align">Choose A Project</p>
+  <% end %>
+
+  <% @projects.each do |project| %>
+    <% if current_user.admin? == false && current_user.projects.include?(project) %>
   <div class ="row ">
     <div class="col s5">
     <p class="flow-text center-align"><%= project.title%></p>
@@ -35,6 +76,8 @@
         <i class="material-icons right">delete</i>
         <% end %>
       </td>
+      
+       <td><%= render partial: 'unsubscribe', locals: { project: project } %></td>
 
     <% if current_user.admin = false || current_user.projects.exclude?(project) %>
       <td><%= render 'subscribe' %></td>
@@ -48,7 +91,7 @@
     </div>
   </div>
   <% end %>
-</table>
+    
 
 <%= link_to "Profile", current_user %>
 <%= link_to 'Logout', destroy_user_session_path, method: :delete %>

@@ -23,5 +23,6 @@ class Update < ApplicationRecord
     else
       "Pending approval"
     end
+
   end
 end

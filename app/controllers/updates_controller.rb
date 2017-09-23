@@ -4,6 +4,7 @@ class UpdatesController < ApplicationController
     @project = Project.find(@update.project_id)
     # @update.user = User.find(params[:user_id])
     # @update.user = current_user
+
   end
 
   def index
@@ -18,17 +19,20 @@ class UpdatesController < ApplicationController
 
   def edit
     @project = Project.find(params[:project_id])
+
     @update = Update.find(params[:id])
   end
 
   def create
     @update = Update.new(update_params)
+
     @project = Project.find(params[:project_id])
     @update.user = current_user
     @update.project = @project
     if @update.save
       redirect_to project_updates_path(@update.project)
     else
+
       @errors = @update.errors.full_messages
       render :new
     end
@@ -36,6 +40,7 @@ class UpdatesController < ApplicationController
 
   def update
     @update = Update.find(params[:id])
+
     if current_user.admin?
       @update.approval = true
       if @update.save

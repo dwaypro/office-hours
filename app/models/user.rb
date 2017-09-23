@@ -6,12 +6,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable
          #:recoverable, :rememberable, :trackable, :validatable
   has_many :subscriptions
-  has_many :projects
+  has_many :projects, through: :subscriptions
   has_many :updates, { through: :projects }
 
 
 def text_user(tel,message)
-  puts "inside #text_user"
+
   begin
     @client = Twilio::REST::Client.new ENV["ACCOUNT_SID"], ENV["AUTH_TOKEN"]
     message = @client.messages.create(

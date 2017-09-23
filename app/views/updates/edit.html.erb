@@ -9,6 +9,7 @@
 <h1>Edit: <%= @update.title %></h1>
 
 <%= form_for [@project, @update] do |f| %>
+
 <%= f.label :status %>
 <%= f.select(:status, [['In progress', 1], ['Final tests', 2], ['Pending review', 3], ['Closed', 4]])%>
 <%= f.label :title %>
