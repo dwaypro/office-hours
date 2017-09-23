@@ -4,7 +4,7 @@
   <title></title>
 </head>
 <body>
-<%= form_tag('/sms') do |form| %>
+<%= form_tag('/projects/:id/sms') do |form| %>
 
 <%= telephone_field_tag 'tel', nil, placeholder: "xxx-xxx-xxxx" %>
 <%= text_field_tag 'message', nil, placeholder: "message" %>

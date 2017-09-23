@@ -18,18 +18,21 @@ class UpdatesController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:project_id])
+
     @update = Update.find(params[:id])
   end
 
   def create
     @update = Update.new(update_params)
-    # @update.user_id = current_user.id
-    @update.user_id = 3 #seed user
-    @update.project_id = params[:project_id]
+
+    @project = Project.find(params[:project_id])
+    @update.user = current_user
+    @update.project = @project
     if @update.save
-      redirect_to action: "index"
+      redirect_to project_updates_path(@update.project)
     else
-      status 422
+
       @errors = @update.errors.full_messages
       render :new
     end
@@ -37,23 +40,22 @@ class UpdatesController < ApplicationController
 
   def update
     @update = Update.find(params[:id])
-    # if current_user.admin == true
+
+    if current_user.admin?
       @update.approval = true
       if @update.save
-        redirect_to @update
+        redirect_to project_update_path(@update.project)
       end
-    # else
+    else
       if @update.approval
         if @update.update(update_params)
-          redirect_to @update
+          redirect_to project_update_path(@update.project)
         else
-          status 422
           @errors = @update.errors.full_messages
           render :edit
         end
-    # redirect_to @update
       end
-    # end
+    end
   end
 
   def destroy
@@ -66,7 +68,7 @@ class UpdatesController < ApplicationController
 private
 
   def update_params
-    params.require(:update).permit(:title, :description)
+    params.require(:update).permit(:title, :description, :status, :approval)
   end
 
 end

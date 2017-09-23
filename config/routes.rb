@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   get '/sms/new', to: 'sms#new'
   post '/sms', to: 'sms#create'
-  post '/sms', to: 'sms#send_all'
+
+  #post '/sms', to: 'sms#send_all'
+
 
 end
