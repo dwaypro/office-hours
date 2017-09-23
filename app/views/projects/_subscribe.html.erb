@@ -1,4 +1,4 @@
 <%= form_with model: @subscription, method: :post do |f| %>
-  <%= f.hidden_field :project_id, :value => @project.id %>
+  <%#= f.hidden_field :project_id, :value => @project.id %>
   <%= f.submit "Request Project Participation" %>
 <% end %>

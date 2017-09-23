@@ -2,32 +2,51 @@
 <html>
 <head>
   <title>University Projects</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <% if current_user.admin? %>
     <h1>Your Active Projects</h1>
   <% else %>
-    <h1>Choose A Project</h1>
+    <p class="flow-text center-align">Choose A Project</p>
   <% end %>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-  </tr>
 
   <% @projects.each do |project| %>
+  <div class ="row ">
+    <div class="col s5">
+    <p class="flow-text center-align"><%= project.title%></p>
+    <div class="card horizontal teal accent-1 card-panel hoverable">
+      <div class="card-stacked ">
+        <div class="card-content">
     <tr>
-      <td> <%= project.title%> </td>
+
       <td> <%= project.description%> </td>
-      <td><%= link_to "Show", project_path(project) %></td>
-      <td><%= link_to "Edit", edit_project_path(project) %> </td>
-      <td><%= link_to "Delete", project_path(project), method: :delete, data: {confirm: 'Are you sure?' }%></td>
+      <td><%= link_to project_path(project) do %>
+        <i class="material-icons right">pageview</i>
+           <% end %>
+      </td>
+
+      <td><%= link_to edit_project_path(project) do %>
+      <i class="material-icons right">edit</i>
+         <% end %>
+      </td>
+
+      <td><%= link_to project_path(project), method: :delete, data: {confirm: 'Are you sure?' } do %>
+        <i class="material-icons right">delete</i>
+        <% end %>
+      </td>
+
     <% if current_user.admin = false || current_user.projects.exclude?(project) %>
       <td><%= render 'subscribe' %></td>
     <% elsif current_user.admin = false || current_user.projects.include?(project) %>
       <td><%= render 'unsubscribe' %></td>
     <% end %>
     </tr>
+    </div>
+
+    </div>
+    </div>
+  </div>
   <% end %>
 </table>
 

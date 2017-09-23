@@ -4,8 +4,11 @@ class SmsController < ApplicationController
   end
 
   def create
+    puts "inside sms#create"
     @user = current_user
     @user.text_user(params[:tel], params[:message])
+
+    redirect_to project_path(params[:project_id])
   end
 
   def send_all
