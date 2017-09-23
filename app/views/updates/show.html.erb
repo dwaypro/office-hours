@@ -17,6 +17,7 @@
 <% end %>
 <ul>
   <li>id: <%= @update.id %></li>
+  <li>status: <%= @update.convert_status %></li>
   <li>description: <%= @update.description %></li>
   <li>user's email: <%= @update.user.email %></li>
   <li>project's title: <%= link_to @update.project.title, @update.project %></li>

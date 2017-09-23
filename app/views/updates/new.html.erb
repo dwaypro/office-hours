@@ -7,8 +7,6 @@
 <% end %>
 
 <%= form_for [@project, @update] do |f| %>
-  <%= f.label :status %>
-  <%= f.select(:status, [['Initial', 1], ['General Note', 2], ['Lab Test', 3], ['Written Test', 4],['Complete', 5], ['Failed', 6]])%>
   <%= f.text_field :title, placeholder: "Title" %>
   <%= f.text_field :description, placeholder: "Description" %>
   <%= f.submit "Create Update for Project" %>

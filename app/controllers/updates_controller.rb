@@ -17,6 +17,7 @@ class UpdatesController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:project_id])
     @update = Update.find(params[:id])
   end
 
