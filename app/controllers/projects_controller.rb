@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   def index
+
     @subscription = Subscription.new
 
     if current_user.admin?
@@ -11,6 +12,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+
+   # @updates = @project.updates
   end
 
   def new

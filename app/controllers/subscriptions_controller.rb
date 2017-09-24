@@ -3,7 +3,7 @@ class SubscriptionsController < ApplicationController
   def create
     @user = current_user
     @project = Project.find(params[:subscription][:project_id])
-
+    
     @subscription = Subscription.new(user: @user, project: @project)
     if @subscription.save
       redirect_to projects_path##project SHOW page
