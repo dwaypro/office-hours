@@ -9,41 +9,44 @@
   <% else %>
     <h3>Choose A Session to Participate In:</h3>
   <% end %>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-  </tr>
 
+<table>
   <% @projects.each do |project| %>
-    <% if current_user.admin? == false && current_user.projects.exclude?(project) %>
+  <% if current_user.admin? %>
     <tr>
       <td> <%= project.title%> </td>
       <td> <%= project.description%> </td>
       <td><%= link_to "Show", project_path(project) %></td>
       <td><%= link_to "Edit", edit_project_path(project) %> </td>
       <td><%= link_to "Delete", project_path(project), method: :delete, data: {confirm: 'Are you sure?' }%></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<table>
+  <% @projects.each do |project| %>
+    <% if current_user.admin? == false && current_user.projects.exclude?(project) %>
+    <tr>
+      <td> <%= project.title%> </td>
+      <td> <%= project.description%> </td>
       <td><%= render partial: 'subscribe', locals: {project: project } %></td>
     </tr>
     <% end %>
   <% end %>
 </table>
 
-<h3>Current Sessions:</h3>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-  </tr>
-  <% @projects.each do |project| %>
+<% if current_user.admin? == false %>
+  <h3>Current Sessions:</h3>
+<% end %>
 
+<table>
+  <% @projects.each do |project| %>
     <% if current_user.admin? == false && current_user.projects.include?(project) %>
     <tr>
       <td> <%= project.title%> </td>
       <td> <%= project.description%> </td>
-      <td><%= link_to "Show", project_path(project) %></td>
-      <td><%= link_to "Edit", edit_project_path(project) %> </td>
-      <td><%= link_to "Delete", project_path(project), method: :delete, data: {confirm: 'Are you sure?' }%></td>
+      <td><%= link_to "Project Details", project_path(project) %></td>
       <td><%= render partial: 'unsubscribe', locals: { project: project } %></td>
     </tr>
     <% end %>
