@@ -197,11 +197,8 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise
-<<<<<<< HEAD
-  google_maps_service
-=======
   dotenv
->>>>>>> 222d4fa72699b30366f6428d286e549cefd6ad54
+  google_maps_service
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
@@ -219,4 +216,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.15.4
+   1.16.0.pre.2

@@ -1,68 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-  <title>Show Project</title>
-</head>
-<body>
-  <p>
-  <strong> Title: </strong>
-    <%= @project.title %>
-  </p>
-
-    <p>
-  <strong> Description: </strong>
-    <%= @project.description %>
-  </p>
-
-  <td><%= link_to "Edit", edit_project_path(@project) %> </td>
-
-
-<%= form_tag('/sms') do |form| %>
-
-<%= telephone_field_tag 'tel', nil, placeholder: "xxx-xxx-xxxx" %>
-<%= text_field_tag 'message', nil, placeholder: "message" %>
-
-<%= button_tag %>
-
-<% end %>
-
-<%= form_tag('/sms/all') do |form| %>
-<%= button_tag 'Send to all students', type: 'send all' %>
-<% end %>
-
-<%= link_to 'Back' , projects_path %>
-=======
-
   <title>Show Project</title>
 </head>
 <body>
 <div class="row">
-        <div class="col s12 m6">
-          <div class="card teal accent-1">
-            <div class="card horizontal teal accent-1 card-panel hoverable">
-            <div class="card-content text-darken-2">
-              <span class="card-title"><%= @project.title%></span>
-
-          <p>
-          <strong> Description: </strong>
-            <%= @project.description %>
-          </p>
-
+  <div class="col s12 m6">
+    <div class="card teal accent-1">
+      <div class="card horizontal teal accent-1 card-panel hoverable">
+        <div class="card-content text-darken-2">
+          <span class="card-title"><%= @project.title%></span>
+          <p><strong> Description: </strong><%= @project.description %></p>
           <%= form_tag('/sms') do |form| %>
-          <%= telephone_field_tag 'tel', nil, placeholder: "xxx-xxx-xxxx" %>
-          <%= text_field_tag 'message', nil, placeholder: "message" %>
-          <%= hidden_field_tag 'project_id', @project.id %>
-          <%= button_tag 'text'%>
+            <%= telephone_field_tag 'tel', nil, placeholder: "xxx-xxx-xxxx" %>
+            <%= text_field_tag 'message', nil, placeholder: "message" %>
+            <%= hidden_field_tag 'project_id', @project.id %>
+            <%= button_tag 'text'%>
           <% end %>
-
           <td><%= link_to "Edit", edit_project_path(@project) %> </td>
-           <%= link_to 'Back' , projects_path %>
+          <%= link_to 'Back' , projects_path %>
       </div>
      </div>
     </div>
   </div>
->>>>>>> 222d4fa72699b30366f6428d286e549cefd6ad54
-
-    </body>
+</body>
 </html>
