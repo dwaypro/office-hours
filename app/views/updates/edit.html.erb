@@ -8,15 +8,15 @@
     </ul>
   <% end %>
 
-  <h1>Edit: <%= @update.title %></h1>
+  <h3>Edit: <%= @update.title %></h3>
 
   <%= form_for [@project, @update] do |f| %>
     <%= f.label :status %>
     <%= f.select(:status, [['In progress', 2], ['Final tests', 3], ['Pending review', 4], ['Closed', 5]]) %>
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: 'materialize-textarea' %>
     <%= f.submit "Update" %>
   <% end %>
 
