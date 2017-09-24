@@ -2,9 +2,7 @@
 <html>
 <head>
   <title>University Projects</title>
-
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 </head>
 <body>
 
@@ -13,12 +11,9 @@
   <% else %>
     <h3>Choose A Session to Participate In:</h3>
   <% end %>
-<<<<<<< HEAD
-=======
 
     <p class="flow-text center-align">Choose A Project</p>
-  <% end %>
->>>>>>> 222d4fa72699b30366f6428d286e549cefd6ad54
+
 
 <table>
   <% @projects.each do |project| %>
@@ -32,25 +27,15 @@
     <div class="card horizontal teal accent-1 card-panel hoverable">
       <div class="card-stacked ">
         <div class="card-content">
->>>>>>> 222d4fa72699b30366f6428d286e549cefd6ad54
     <tr>
 
       <td> <%= project.description%> </td>
-<<<<<<< HEAD
+
       <td><%= link_to "Show", project_path(project) %></td>
       <td><%= link_to "Edit", edit_project_path(project) %> </td>
       <td><%= link_to "Delete", project_path(project), method: :delete, data: {confirm: 'Are you sure?' }%></td>
     </tr>
-=======
-
-
       <td><%= render partial: 'subscribe', locals: {project: project } %></td>
-
-    <% if current_user.admin = false || current_user.projects.exclude?(project) %>
-      <td><%= render 'subscribe' %></td>
-    <% elsif current_user.admin = false || current_user.projects.include?(project) %>
-      <td><%= render 'unsubscribe' %></td>
->>>>>>> 222d4fa72699b30366f6428d286e549cefd6ad54
     <% end %>
     </tr>
     </div>
