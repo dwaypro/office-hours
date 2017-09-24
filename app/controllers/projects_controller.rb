@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   def index
 
-    @subscription = Subscription.new
+    #@subscription = Subscription.find_by(user_id: current_user.id)
 
     if current_user.admin?
       @projects = current_user.projects
