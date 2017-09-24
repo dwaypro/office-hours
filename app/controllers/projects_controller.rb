@@ -1,12 +1,18 @@
 class ProjectsController < ApplicationController
   def index
+   @subscription = Subscription.new
+   # @subscriptions = Subscription.where(user: current_user)
+  if current_user.admin?
+   # @student_projects = Project.where(id: 5)
 
-    @subscription = Subscription.new
+    # @subscriptions = Subscription.all
 
-    if current_user.admin?
+    # @Projects = Project.where()
       @projects = current_user.projects
     else
       @projects = Project.all
+      @subs = Subscription.where(user_id: current_user.id)
+
     end
   end
 
