@@ -30,7 +30,7 @@ class UpdatesController < ApplicationController
     @update.user = current_user
     @update.project = @project
     if @update.save
-      redirect_to project_updates_path(@update.project)
+      redirect_to project_path(@project)
     else
 
       @errors = @update.errors.full_messages
