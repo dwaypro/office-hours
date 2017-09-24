@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
    # @subscriptions = Subscription.where(user: current_user)
   if current_user.admin?
    # @student_projects = Project.where(id: 5)
-
+    
     # @subscriptions = Subscription.all
 
     # @Projects = Project.where()

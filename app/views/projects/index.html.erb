@@ -8,7 +8,7 @@
 
 <!-- ADMIN or STUDENT LOGIN -->
 <% if current_user.admin? %>
-  <h1>Your Active Projects</h1>
+  <h1 class="flow-text center-align">Your Active Projects</h1>
 <% else %>
   <h3>Choose A Session to Participate In:</h3>
 <% end %>
@@ -16,16 +16,16 @@
 <!-- ADMIN CONTROLLER -->
 <% @projects.each do |project| %>
 <% if current_user.admin? %>
-<table>
+
     <div class ="row ">
     <div class="col s5">
     <p class="flow-text center-align"><%= project.title %></p>
       <div class="card horizontal teal accent-1 card-panel hoverable">
         <div class="card-stacked ">
           <div class="card-content">
+            <h6  > <%= project.description%> </h6>
             <tr>
-              <td> <%= project.description%> </td>
-              <td><%= link_to "Project Details", project_path(project) %></td>
+
               <td><%= link_to project_path(project) do %>
                 <i class="material-icons right">pageview</i>
               <% end %>
@@ -41,11 +41,12 @@
                 <% end %>
               </td>
             </tr>
+            </div>
           </div>
         </div>
       </div>
     </div>
-</table>
+
 <% end %>
 <% end %>
 
@@ -73,20 +74,16 @@
 <% end %>
 
 <!-- SUBSCRIBED STUDENT CONTROLLER -->
+
 <% if current_user.admin? == false %>
   <% @subs.each do |sub| %>
-    <%#= subscription.id %>
-    <%#= subscription.user_id %>
-    <%#= subscription.project_id %>
-    <%#= project.title %>
-    <%#= project.description%>
     <%project =  Project.find(sub.project_id) %>
     <%= link_to "Project Details", project_path(project) %>
-    <%#= render partial: 'unsubscribe', locals: { project: project } %>
   <% end %>
 <% end %>
 
 <%= link_to "Profile", current_user %>
 <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+
 </body>
 </html>
