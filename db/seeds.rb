@@ -16,12 +16,12 @@ user = User.find_or_initialize_by(email: 'a@email.com')
 user.password = user.password_confirmation = 'valid_password' && user.save! unless user.persisted?
 
 
-project = Project.find_or_initialize_by(title: "Proposal Title", description: "This is a sample description")
-unless project.persisted?
-  project.subject = 1
-  project.staff = user
-  project.save!
-end
+# project = Project.find_or_initialize_by(title: "Proposal Title", description: "This is a sample description")
+# unless project.persisted?
+#   project.subject = 1
+#   project.staff = user
+#   project.save!
+# end
 
 update = Update.find_or_initialize_by(user: user, project: project, title: "First update", description: "Made my first update")
 unless update.persisted?
