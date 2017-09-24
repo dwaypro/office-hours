@@ -1,4 +1,15 @@
-<h2>Log in</h2>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Office Hours - Login</title>
+  <style> body {
+      background-image: url("chalkboard.jpg");
+      }
+</style>
+</head>
+<body background="chalkboard.jpg">
+
+<h2>Login</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -24,3 +35,6 @@
 <% end %>
 
 <%= link_to "Register", new_user_registration_path %>
+
+</body>
+</html>

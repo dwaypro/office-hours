@@ -6,6 +6,7 @@
 </head>
 <body>
 
+<!-- ADMIN or STUDENT LOGIN -->
 <% if current_user.admin? %>
   <h1>Your Active Projects</h1>
 <% else %>
@@ -48,6 +49,7 @@
 <% end %>
 <% end %>
 
+<!-- STUDENT LOGIN -->
 <% if current_user.admin? == false %>
   <p class="flow-text center-align">Choose A Project</p>
 <% end %>
@@ -65,6 +67,7 @@
   <% end %>
 </table>
 
+<!-- STUDENT LOGIN -->
 <% if current_user.admin? == false %>
   <h3>Current Sessions:</h3>
 <% end %>
