@@ -1,20 +1,27 @@
-<% if @errors && @errors.any? %>
-  <ul>
-    <% @errors.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
+<% if !current_user.admin? && current_user.id == @update.user_id %>
+
+  <% if @errors && @errors.any? %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <h1>Edit: <%= @update.title %></h1>
+
+  <%= form_for [@project, @update] do |f| %>
+    <%= f.label :status %>
+    <%= f.select(:status, [['In progress', 2], ['Final tests', 3], ['Pending review', 4], ['Closed', 5]]) %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <%= f.submit "Update" %>
+  <% end %>
+
+<% else %>
+  <p>Edit request failed</p>
 <% end %>
 
-<h1>Edit: <%= @update.title %></h1>
-
-<%= form_for [@project, @update] do |f| %>
-
-<%= f.label :status %>
-<%= f.select(:status, [['In progress', 1], ['Final tests', 2], ['Pending review', 3], ['Closed', 4]])%>
-<%= f.label :title %>
-<%= f.text_field :title %>
-<%= f.label :description %>
-<%= f.text_area :description %>
-<%= f.submit "Update" %>
-<% end %>
+<%= link_to "Back", project_path(@project) %>
