@@ -12,17 +12,19 @@ class Update < ApplicationRecord
 
   def convert_status
     case self.status
-    when 4
+    when 5
       "Closed"
+    when 4
+      "Pending review"
     when 3
-      "Final Review"
-    when 2
       "Final tests"
-    when 1
+    when 2
       "In progress"
+    when 1
+      "Approved"
     else
       "Pending approval"
     end
-
   end
+
 end
