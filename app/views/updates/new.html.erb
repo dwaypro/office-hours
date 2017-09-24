@@ -1,17 +1,21 @@
-<% if @errors && @errors.any? %>
-  <ul>
-    <% @errors.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
+<% if !current_user.admin? %>
+
+  <% if @errors && @errors.any? %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_for [@project, @update] do |f| %>
+    <%= f.text_field :title, placeholder: "Title", class: 'form-control' %>
+    <%= f.text_area :description, placeholder: "Description", class: 'materialize-textarea'  %>
+    <%= f.button placeholder: "create update", class: "btn waves-effect waves-light", type: "submit", name: "action" %>
+  <% end %>
+
+<% else %>
+  <p>Request to create a new update failed.</p>
 <% end %>
 
-<%= form_for [@project, @update] do |f| %>
-
-  <%= f.text_field :title, placeholder: "Title" %>
-  <%= f.text_field :description, placeholder: "Description" %>
-  <%= f.submit "Create Update for Project" %>
-
-<% end %>
-
-<%= link_to "Back", project_updates_path %>
+<%= link_to "Back", project_path(@project) %>

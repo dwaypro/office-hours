@@ -11,13 +11,20 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
-
+    if current_user.admin?
+      @project = Project.find(params[:id])
+    else
+      redirect_to projects_path
+    end
    # @updates = @project.updates
   end
 
   def new
+   if current_user.admin?
     @project = Project.new
+   else
+    redirect_to projects_path
+   end
   end
 
   def create
@@ -45,11 +52,14 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    if current_user.admin?
     @project = Project.find(params[:id])
     @project.destroy
-
     redirect_to projects_path
+    else
+      redirect_to projects_path
+    end
   end
 
   private

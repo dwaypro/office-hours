@@ -1,6 +1,5 @@
-<h1><%= @update.title %></h1>
-
 <% if current_user.admin? %>
+
   <% if @update.approval == false %>
     <%= form_tag([@update.project, @update], method: :put) do %>
       <%= submit_tag("Approve") %>
@@ -9,19 +8,25 @@
       <%= submit_tag("Deny") %>
     <% end %>
   <% end %>
+
 <% end %>
+
+<ul class="collection with-header">
+  <li class="collection-header"><h3><%= @update.title %></h3></li>
+  <li class="collection-item">id: <%= @update.id %></li>
+  <li class="collection-item">status: <%= @update.convert_status %></li>
+  <li class="collection-item">description: <%= @update.description %></li>
+  <li class="collection-item">contributor's email: <%= @update.user.email %></li>
+  <li class="collection-item">project's title: <%= link_to @update.project.title, @update.project %></li>
+</ul>
+
 <% if !current_user.admin? && current_user.id == @update.user_id %>
+
   <% if @update.approval %>
     <%= link_to "Edit", edit_project_update_path(@update.project, @update) %>
-    <%= link_to "Delete", [@update.project, @update], method: :delete , data: { confirm: 'Are you sure?' } %>
+    <%= link_to "Delete", [@update.project, @update], method: :delete , data: { confirm: 'Are you sure?' } %><br>
   <% end %>
-<% end %>
-<ul>
-  <li>id: <%= @update.id %></li>
-  <li>status: <%= @update.convert_status %></li>
 
-  <li>description: <%= @update.description %></li>
-  <li>user's email: <%= @update.user.email %></li>
-  <li>project's title: <%= link_to @update.project.title, @update.project %></li>
-</ul>
-<%#= link_to "Back", project_updates_path %>
+<% end %>
+
+<%= link_to "Back", project_path(@project) %>
