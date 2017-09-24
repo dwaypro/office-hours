@@ -11,11 +11,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    if current_user.admin?
       @project = Project.find(params[:id])
-    else
       redirect_to projects_path
-    end
    # @updates = @project.updates
   end
 
