@@ -9,9 +9,9 @@
   <% end %>
 
   <%= form_for [@project, @update] do |f| %>
-    <%= f.text_field :title, placeholder: "Title" %>
-    <%= f.text_field :description, placeholder: "Description"  %>
-    <%= f.submit "Create Update for Project" %>
+    <%= f.text_field :title, placeholder: "Title", class: 'form-control' %>
+    <%= f.text_area :description, placeholder: "Description", class: 'materialize-textarea'  %>
+    <%= f.button placeholder: "create update", class: "btn waves-effect waves-light", type: "submit", name: "action" %>
   <% end %>
 
 <% else %>
