@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery
 //= require jquery_ujs
+//= require projects
 //= require materialize-sprockets
 //= require updates
 //= require_tree .
