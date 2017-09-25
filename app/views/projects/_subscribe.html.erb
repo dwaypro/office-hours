@@ -1,5 +1,6 @@
-<%#= form_with model: [current_user, @subscription], local: true, method: :post do |f| %>
-  <%#= f.hidden_field :project_id, :value => project.id %>
+<%= form_with model: [current_user, @subscription], local: true, method: :post do |f| %>
+  <%= f.hidden_field :project_id, :value => project.id %>
 
-  <%#= f.submit "Request Project Participation" %>
+  <%= f.submit "Request Project Participation" %>
+  <% end %>
 

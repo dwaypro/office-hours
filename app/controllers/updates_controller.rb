@@ -1,6 +1,6 @@
 class UpdatesController < ApplicationController
   def show
-    @update = Update.find(params[:id])
+    @update = Update.find_by(project_id: params[:id])
     @project = Project.find(@update.project_id)
     # @update.user = User.find(params[:user_id])
     # @update.user = current_user
