@@ -42,6 +42,7 @@ src="https://www.google.com/maps/embed/v1/place?q=<%= @project.location %>&key=A
               <p>
           <strong> Description: </strong>
             <%= update.description %>
+            <%= link_to "details", project_update_path(update) %>
           </p>
           </div>
      </div>
